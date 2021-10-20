@@ -4,18 +4,18 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/src/utils/utils.dart';
 import 'package:get/get.dart';
 
 import 'src/configs/configs.dart';
 import 'src/presentation/presentation.dart';
+import 'src/utils/utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Firebase.initializeApp();
-  await AppPref.initListener();
+  await AppPrefs.initListener();
   await notificationInitialed();
   runApp(RestartWidget(child: App()));
 }

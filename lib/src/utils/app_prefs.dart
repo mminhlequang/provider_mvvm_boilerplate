@@ -2,8 +2,8 @@ import 'package:flutter_app/src/resource/resource.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rxdart/rxdart.dart';
 
-class AppPref {
-  AppPref._();
+class AppPrefs {
+  AppPrefs._();
 
   static final GetStorage _box = GetStorage('AppPref');
 
