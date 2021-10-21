@@ -30,7 +30,7 @@ class WidgetGradientContainer extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: borderRadius ?? BorderRadius.circular(8),
           gradient: LinearGradient(
-              colors: [PRIMARY_LIGHT_COLOR, PRIMARY_DARK_COLOR],
+              colors: [AppColors.primary, AppColors.primary],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight)),
     );

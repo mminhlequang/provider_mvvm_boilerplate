@@ -67,7 +67,7 @@ class WidgetLoadMoreWrapVerticalState<T>
         ? loadingProgress()
         : (this._dataList!.length > 0
             ? RefreshIndicator(
-                color: widget.loadingColor ?? PRIMARY_DARK_COLOR,
+                color: widget.loadingColor ?? AppColors.primary,
                 onRefresh: this.onRefresh,
                 child: SingleChildScrollView(
                   controller: _controller,
@@ -79,7 +79,7 @@ class WidgetLoadMoreWrapVerticalState<T>
                 ),
               )
             : RefreshIndicator(
-                color: widget.loadingColor ?? PRIMARY_DARK_COLOR,
+                color: widget.loadingColor ?? AppColors.primary,
                 onRefresh: this.onRefresh,
                 child: Stack(
                   children: [

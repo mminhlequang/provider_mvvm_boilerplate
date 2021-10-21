@@ -56,7 +56,7 @@ class WidgetImageView extends StatelessWidget {
       child: Text(
         // AppLocalizations.of(context).translate(keyTitle)
         "Image View",
-        style: STYLE_MEDIUM_BOLD.copyWith(color: Colors.white),
+        style: AppTextStyles.normalBold,
       ),
     ));
   }

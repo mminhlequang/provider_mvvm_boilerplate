@@ -15,16 +15,14 @@ class WidgetElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget child = Center(
-      child: Text(title.tr,
-          style: textStyle ??
-              STYLE_SMALL.copyWith(color: Colors.white)),
+      child: Text(title.tr, style: textStyle ?? AppTextStyles.normalBold),
     );
     return ElevatedButton(
       onPressed: action,
       style: ButtonStyle(
-          shape: MaterialStateProperty.all(RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0))),
-          backgroundColor: MaterialStateProperty.all<Color>(color ?? PRIMARY_COLOR)),
+          shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
+          backgroundColor: MaterialStateProperty.all<Color>(color ?? AppColors.primary)),
       child: width != null
           ? SizedBox(
               width: width,

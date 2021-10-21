@@ -1,15 +1,33 @@
+import 'package:flutter_app/src/utils/utils.dart';
 import 'package:intl/intl.dart';
 
 class AppUtils {
   AppUtils._();
+
+  static const List<String> _themes = ['dark', 'light'];
+
+  static dynamic valueByMode({List<String> themes = _themes, required List<dynamic> values}) {
+    try {
+      for (int i = 0; i < themes.length; i++) {
+        if (AppPrefs.appMode == themes[i]) {
+          if (i < values.length)
+            return values[i];
+          else
+            values.first;
+        }
+      }
+      return values.first;
+    } catch (e) {
+      return values.first;
+    }
+  }
 
   static String pathMediaToUrl(String? url) {
     if (url == null || url.startsWith("http")) return url ?? "";
     return "${"AppEndpoint.BASE_UPLOAD_URL"}$url";
   }
 
-  static String convertDateTime2String(DateTime? dateTime,
-      {String format = 'yy-MM-dd'}) {
+  static String convertDateTime2String(DateTime? dateTime, {String format = 'yy-MM-dd'}) {
     if (dateTime == null) return "";
     return DateFormat(format).format(dateTime);
   }
@@ -21,8 +39,7 @@ class AppUtils {
   }
 
   static String convertString2String(String? dateTime,
-      {String inputFormat = "yyyy-MM-ddTHH:mm:ss.SSSZ",
-        String outputFormat = "yyyy-MM-dd"}) {
+      {String inputFormat = "yyyy-MM-ddTHH:mm:ss.SSSZ", String outputFormat = "yyyy-MM-dd"}) {
     if (dateTime == null) return "";
     final input = convertString2DateTime(dateTime, format: inputFormat);
     return convertDateTime2String(input, format: outputFormat);

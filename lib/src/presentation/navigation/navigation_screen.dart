@@ -31,26 +31,17 @@ class _NavigationScreenState extends State<NavigationScreen> with ResponsiveWidg
 
   @override
   Widget buildDesktop(BuildContext context) {
-    return Text(
-      "NavigationScreen Desktop",
-      style: STYLE_MEDIUM_BOLD.copyWith(color: PRIMARY_COLOR),
-    );
+    return Text("NavigationScreen Desktop");
   }
 
   @override
   Widget buildMobile(BuildContext context) {
-    return Text(
-      "NavigationScreen Mobile",
-      style: STYLE_MEDIUM_BOLD.copyWith(color: PRIMARY_COLOR),
-    );
+    return Text("NavigationScreen Mobile");
   }
 
   @override
   Widget buildTablet(BuildContext context) {
-    return Text(
-      "NavigationScreen Tablet",
-      style: STYLE_MEDIUM_BOLD.copyWith(color: PRIMARY_COLOR),
-    );
+    return Text("NavigationScreen Tablet");
   }
 
   Widget _buildMobileAppbar(BuildContext context) {

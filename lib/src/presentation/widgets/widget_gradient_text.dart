@@ -17,13 +17,13 @@ class WidgetGradientText extends StatelessWidget {
     return ShaderMask(
       shaderCallback: (bounds) => (gradient ??
               LinearGradient(
-                  colors: [PRIMARY_LIGHT_COLOR, PRIMARY_DARK_COLOR]))
+                  colors: [AppColors.primary, AppColors.primary]))
           .createShader(
         Rect.fromLTWH(0, 0, bounds.width, bounds.height),
       ),
       child: Text(
         text,
-        style: style ?? STYLE_MEDIUM,
+        style: style ?? AppTextStyles.normalBold,
       ),
     );
   }

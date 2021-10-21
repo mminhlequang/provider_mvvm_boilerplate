@@ -40,8 +40,8 @@ class WidgetButtonGradient extends StatelessWidget {
           decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  colorStart ?? PRIMARY_COLOR,
-                  colorEnd ?? PRIMARY_LIGHT_COLOR
+                  colorStart ?? AppColors.primary,
+                  colorEnd ?? AppColors.primary
                 ],
                 begin: alignmentStart ?? Alignment.bottomCenter,
                 end: alignmentEnd ?? Alignment.topCenter,

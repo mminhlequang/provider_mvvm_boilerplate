@@ -16,7 +16,11 @@ class AppPrefs {
     });
   }
 
-  static set accessToken(String? token)=>_box.write('accessToken', token);
+  static set appMode(String? data) => _box.write('appMode', data);
+
+  static String? get appMode => _box.read('appMode');
+
+  static set accessToken(String? data) => _box.write('accessToken', data);
 
   static String? get accessToken => _box.read('accessToken');
 

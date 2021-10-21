@@ -8,23 +8,19 @@ class WidgetOutlinedButton extends StatelessWidget {
   final double? width;
   final TextStyle? textStyle;
 
-  const WidgetOutlinedButton(
-      {required this.title, this.action, this.width, this.textStyle});
+  const WidgetOutlinedButton({required this.title, this.action, this.width, this.textStyle});
 
   @override
   Widget build(BuildContext context) {
     Widget child = Center(
-      child: Text(title.tr,
-          style: textStyle ??
-              STYLE_SMALL.copyWith(color: Colors.white)),
+      child: Text(title.tr, style: textStyle ?? AppTextStyles.normalBold),
     );
     return OutlinedButton(
       onPressed: action,
       style: ButtonStyle(
-          side: MaterialStateProperty.all(
-              BorderSide(color: PRIMARY_COLOR)),
-          shape: MaterialStateProperty.all(RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0))),
+          side: MaterialStateProperty.all(BorderSide(color: AppColors.primary)),
+          shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0))),
           backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
       child: width != null
           ? SizedBox(
