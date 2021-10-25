@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import '../../configs/configs.dart';
 
@@ -6,11 +9,37 @@ class NetworkState<T> {
   String? message;
   T? data;
 
-  NetworkState({this.message, this.data,  this.status});
+  NetworkState({this.message, this.data, this.status});
+
+  factory NetworkState.fromResponse(Response response, {converter, value, String? prefix}) {
+    try {
+      return NetworkState._fromJson(jsonDecode(jsonEncode(response.data)),
+          converter: converter, prefix: prefix, value: value);
+    } catch (e) {
+      log("Error NetworkResponse.fromResponse: $e");
+      return NetworkState.withErrorConvert(e);
+    }
+  }
+
+  NetworkState._fromJson(dynamic json, {converter, value, String? prefix}) {
+    status = json['status'];
+    message = json['message'];
+    if (value != null)
+      data = value;
+    else if (prefix != null) {
+      if (prefix.trim().isEmpty)
+        data = converter != null && json != null ? converter(json) : json;
+      else
+        data = converter != null && json[prefix] != null ? converter(json[prefix]) : json[prefix];
+    } else {
+      data =
+      converter != null && json["data"] != null ? converter(json["data"]) : json["data"];
+    }
+  }
 
   NetworkState.fromJson(Map<String, dynamic> json) {
     this.message = json['message'];
-    this.status = json['status'] ;
+    this.status = json['status'];
     this.data = json['data'];
   }
 
@@ -25,20 +54,12 @@ class NetworkState<T> {
   NetworkState.withError(DioError error) {
     String message;
     int? code;
-    print("=========== ERROR ===========");
-    print("${error.type}");
     Response? response = error.response;
     if (response != null) {
-      print("=========== statusCode ===========");
-      print("${response.statusCode}");
       code = response.statusCode;
-      print("=========== data ===========");
-      print("${response.data.toString()}");
       message = response.data["message"];
     } else {
       code = AppEndpoint.ERROR_SERVER;
-      print("=========== message ===========");
-      print("${error.message}");
       message = "Không thể kết nối đến máy chủ!";
     }
     this.message = message;
@@ -47,10 +68,12 @@ class NetworkState<T> {
   }
 
   NetworkState.withDisconnect() {
-    print("=========== DISCONNECT ===========");
-    this.message =
-        "Mất kết nối internet, vui lòng kiểm tra wifi/3g và thử lại!";
+    this.message = "Mất kết nối internet, vui lòng kiểm tra wifi/3g và thử lại!";
     this.status = AppEndpoint.ERROR_DISCONNECT;
+    this.data = null;
+  }
+
+  NetworkState.withErrorConvert(error) {
     this.data = null;
   }
 
