@@ -39,12 +39,12 @@
 // class LoginSocialFirebaseResult {
 //   bool success;
 //   User? user;
-//   String? token;
+//   String? idToken;
 //   String? msg;
 //
 //   bool get isSuccess => success;
 //
-//   LoginSocialFirebaseResult({this.success = false, this.msg, this.token, this.user});
+//   LoginSocialFirebaseResult({this.success = false, this.msg, this.idToken, this.user});
 // }
 //
 // class SocialService {
@@ -80,7 +80,7 @@
 //           .getUserData(fields: "name,email,picture.width(200),birthday,friends,gender,link");
 //       log("User: $user");
 //       socialResult.id = accessToken.userId;
-//       socialResult.accessToken = accessToken.token;
+//       socialResult.accessToken = accessToken.idToken;
 //       socialResult.fullName = user['name'];
 //       socialResult.email = user['email'];
 //       socialResult.avatar = user['picture']['data']['url'];
@@ -217,7 +217,7 @@
 //     if (authCredential != null) {
 //       try {
 //         userCredential = await _auth.signInWithCredential(authCredential);
-//         result.token = (await userCredential.user!.getIdTokenResult()).token;
+//         result.idToken = (await userCredential.user!.getIdToken());
 //         result.user = userCredential.user;
 //         result.success = true;
 //       } catch (e) {
@@ -249,8 +249,8 @@
 //     switch (result.status) {
 //       case LoginStatus.success:
 //         print("_loginFacebook ok");
-//         print("${result.accessToken!.token}");
-//         return FacebookAuthProvider.credential(result.accessToken!.token);
+//         print("${result.accessToken!.idToken}");
+//         return FacebookAuthProvider.credential(result.accessToken!.idToken);
 //       case LoginStatus.cancelled:
 //         print("_loginFacebook cancel");
 //         return null;
