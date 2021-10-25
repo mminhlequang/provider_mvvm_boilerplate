@@ -4,18 +4,18 @@
 // import '../presentation.dart';
 //
 // class Screen extends StatefulWidget {
-//   const Screen({Key key}) : super(key: key);
+//   const Screen({Key? key}) : super(key: key);
 //
 //   @override
 //   _ScreenState createState() => _ScreenState();
 // }
 //
-// class _ScreenState extends State<Screen> with ResponsiveWidget {
-//   ViewModel _viewModel;
+// class _ScreenState extends State<Screen> {
+//   late ViewModel _viewModel;
 //
 //   @override
 //   Widget build(BuildContext context) {
-//     return BaseWidget<SplashViewModel>(
+//     return BaseWidget<ViewModel>(
 //         viewModel: ViewModel(),
 //         onViewModelReady: (viewModel) {
 //           _viewModel = viewModel..init();
@@ -23,23 +23,12 @@
 //         // child: WidgetBackground(),
 //         builder: (context, viewModel, child) {
 //           return Scaffold(
-//             body: buildUi(context: context),
+//             body: SafeArea(child: _buildBody()),
 //           );
 //         });
 //   }
 //
-//   @override
-//   Widget buildMobile(BuildContext context) {
-//     return SizedBox();
-//   }
-//
-//   @override
-//   Widget buildTablet(BuildContext context) {
-//     return SizedBox();
-//   }
-//
-//   @override
-//   Widget buildDesktop(BuildContext context) {
+//   Widget _buildBody() {
 //     return SizedBox();
 //   }
 // }
