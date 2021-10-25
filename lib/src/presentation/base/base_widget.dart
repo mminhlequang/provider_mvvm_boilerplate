@@ -60,11 +60,11 @@ class _BaseWidgetState<T extends BaseViewModel> extends State<BaseWidget<T>> wit
     return ChangeNotifierProvider<T>(
       create: (context) => viewModel!..setContext(context),
       child: Consumer<T>(
-        builder: widget.builder,
-        child: WidgetLoadingFullScreen(
-          loading: viewModel!.loadingSubject,
-          child: buildUi(context, defaultWidget: widget.child),
+        builder: (_, viewModel, child) => WidgetLoadingFullScreen(
+          loading: viewModel.loadingSubject,
+          child: widget.builder(_, viewModel, child),
         ),
+        child: buildUi(context, defaultWidget: widget.child),
       ),
     );
   }
