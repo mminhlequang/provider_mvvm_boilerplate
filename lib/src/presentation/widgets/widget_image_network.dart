@@ -7,6 +7,9 @@ import '../presentation.dart';
 enum ImageNetworkShape { none, circle }
 
 class WidgetImageNetwork extends StatelessWidget {
+  static String placeholder({int width = 720, int height = 720, String text = 'No Image'}) =>
+      'https://via.placeholder.com/${width}x${height}.png?text=$text';
+
   final String url;
   final double? width;
   final double? height;
@@ -34,8 +37,7 @@ class WidgetImageNetwork extends StatelessWidget {
       imageBuilder: (_, image) {
         switch (shape) {
           case ImageNetworkShape.circle:
-            return CircleAvatar(
-                radius: (width ?? height ?? 0) / 2, backgroundImage: image);
+            return CircleAvatar(radius: (width ?? height ?? 0) / 2, backgroundImage: image);
           default:
             return Image(
               image: image,

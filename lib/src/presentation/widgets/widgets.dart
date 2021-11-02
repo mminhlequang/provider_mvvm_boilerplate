@@ -14,3 +14,5 @@ export 'widget_gradient_text.dart';
 export 'widget_outlined_button.dart';
 export 'widget_keyboard_dismiss.dart';
 export 'widget_loading_full_screen.dart';
+export 'dialog/widget_dialog_confirm.dart';
+export 'dialog/widget_dialog_notification.dart';

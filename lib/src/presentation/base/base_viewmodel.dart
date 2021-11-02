@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:rxdart/rxdart.dart';
+
+import '../presentation.dart';
 
 abstract class BaseViewModel extends ChangeNotifier {
   BuildContext? _context;
@@ -39,6 +42,14 @@ abstract class BaseViewModel extends ChangeNotifier {
 
   void unFocus() {
     FocusScope.of(context).unfocus();
-    SystemChrome.setEnabledSystemUIOverlays([]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+  }
+
+  Future<bool?> confirm(String title) async {
+    return await Get.dialog(WidgetDialogConfirm(title: title));
+  }
+
+  Future<bool?> notification(String title) async {
+    return await Get.dialog(WidgetDialogNotification(title: title));
   }
 }
