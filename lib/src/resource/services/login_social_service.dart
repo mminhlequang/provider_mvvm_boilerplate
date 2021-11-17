@@ -7,7 +7,6 @@
 // import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 // import 'package:google_sign_in/google_sign_in.dart';
 // import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-// import 'package:twitter_login/twitter_login.dart';
 //
 // enum SocialType { facebook, google, twitter, apple }
 //
@@ -80,7 +79,7 @@
 //           .getUserData(fields: "name,email,picture.width(200),birthday,friends,gender,link");
 //       log("User: $user");
 //       socialResult.id = accessToken.userId;
-//       socialResult.accessToken = accessToken.idToken;
+//       socialResult.accessToken = accessToken.token;
 //       socialResult.fullName = user['name'];
 //       socialResult.email = user['email'];
 //       socialResult.avatar = user['picture']['data']['url'];
@@ -112,38 +111,38 @@
 //     return result;
 //   }
 //
-//   Future<LoginSocialResult> signInTwitter() async {
-//     LoginSocialResult result = LoginSocialResult(type: SocialType.twitter);
-//     try {
-//       final twitterLogin = TwitterLogin(
-//         // Consumer API keys
-//         apiKey: 'xxxx',
-//         // Consumer API Secret keys
-//         apiSecretKey: 'xxxx',
-//         // Registered Callback URLs in TwitterApp
-//         // Android is a deeplink
-//         // iOS is a URLScheme
-//         redirectURI: 'example://',
-//       );
-//       final authResult = await twitterLogin.login();
-//       if (authResult.status == null) throw Exception('TwitterLogin status null!');
-//       switch (authResult.status!) {
-//         case TwitterLoginStatus.loggedIn:
-//           result.accessToken = authResult.authToken;
-//           result.secretToken = authResult.authTokenSecret;
-//           result.success = true;
-//           break;
-//         case TwitterLoginStatus.cancelledByUser:
-//           break;
-//         case TwitterLoginStatus.error:
-//           print("SignIn Twitter Error: ${authResult.errorMessage}");
-//           break;
-//       }
-//     } catch (error) {
-//       log("SignIn Twitter Error: $error");
-//     }
-//     return result;
-//   }
+//   // Future<LoginSocialResult> signInTwitter() async {
+//   //   LoginSocialResult result = LoginSocialResult(type: SocialType.twitter);
+//   //   try {
+//   //     final twitterLogin = TwitterLogin(
+//   //       // Consumer API keys
+//   //       apiKey: 'xxxx',
+//   //       // Consumer API Secret keys
+//   //       apiSecretKey: 'xxxx',
+//   //       // Registered Callback URLs in TwitterApp
+//   //       // Android is a deeplink
+//   //       // iOS is a URLScheme
+//   //       redirectURI: 'example://',
+//   //     );
+//   //     final authResult = await twitterLogin.login();
+//   //     if (authResult.status == null) throw Exception('TwitterLogin status null!');
+//   //     switch (authResult.status!) {
+//   //       case TwitterLoginStatus.loggedIn:
+//   //         result.accessToken = authResult.authToken;
+//   //         result.secretToken = authResult.authTokenSecret;
+//   //         result.success = true;
+//   //         break;
+//   //       case TwitterLoginStatus.cancelledByUser:
+//   //         break;
+//   //       case TwitterLoginStatus.error:
+//   //         print("SignIn Twitter Error: ${authResult.errorMessage}");
+//   //         break;
+//   //     }
+//   //   } catch (error) {
+//   //     log("SignIn Twitter Error: $error");
+//   //   }
+//   //   return result;
+//   // }
 //
 //   static Future<LoginSocialResult> signInWithApple() async {
 //     LoginSocialResult result = LoginSocialResult(type: SocialType.apple);
@@ -249,8 +248,8 @@
 //     switch (result.status) {
 //       case LoginStatus.success:
 //         print("_loginFacebook ok");
-//         print("${result.accessToken!.idToken}");
-//         return FacebookAuthProvider.credential(result.accessToken!.idToken);
+//         print("${result.accessToken!.token}");
+//         return FacebookAuthProvider.credential(result.accessToken!.token);
 //       case LoginStatus.cancelled:
 //         print("_loginFacebook cancel");
 //         return null;

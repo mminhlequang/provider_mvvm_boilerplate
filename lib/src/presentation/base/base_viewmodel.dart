@@ -21,7 +21,7 @@ abstract class BaseViewModel extends ChangeNotifier {
     if (loading != isLoading) loadingSubject.add(loading);
   }
 
-  bool get isLoading => loadingSubject.value!;
+  bool get isLoading => loadingSubject.value;
 
   void setError(String message) {
     errorSubject.add(message);
