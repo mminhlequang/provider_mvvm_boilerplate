@@ -1,5 +1,4 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,22 +22,19 @@ void main() async {
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ThemeSwitcherWidget(
-        initialThemeData: normalTheme(context), child: MyApp());
+    return ThemeSwitcherWidget(initialThemeData: normalTheme(context), child: MyApp());
   }
 }
 
 class MyApp extends StatefulWidget {
-  static FirebaseAnalytics analytics = FirebaseAnalytics();
   static FirebaseAnalyticsObserver observer =
-  FirebaseAnalyticsObserver(analytics: analytics);
+      FirebaseAnalyticsObserver(analytics: FirebaseAnalytics.instance);
 
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-
   @override
   void initState() {
     super.initState();
@@ -61,7 +57,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: AppValues.APP_NAME,
+      title: APP_NAME,
       theme: ThemeSwitcher.of(context).themeData,
       navigatorObservers: <NavigatorObserver>[MyApp.observer],
       locale: Locale('vi', 'VN'),
