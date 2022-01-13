@@ -10,6 +10,8 @@ class AppFontSize {
   static const double fontExtraSmall = 8.0;
   static const double fontTextExtraBig = 31;
   static const double fontErrorText = 14;
+
+  static const double fontHeight  = 1.2;
 }
 
 class AppTextStyles {
@@ -18,6 +20,7 @@ class AppTextStyles {
   static String get fontFamilyRoboto => 'Roboto';
 
   static TextStyle get normal => TextStyle(
+      height: AppFontSize.fontHeight,
       fontFamily: fontFamilyRoboto,
       color: AppColors.text,
       fontWeight: FontWeight.normal,

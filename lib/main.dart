@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:overlay_support/overlay_support.dart'; 
 
 import 'src/configs/configs.dart';
 import 'src/presentation/presentation.dart';
@@ -16,7 +17,7 @@ void main() async {
   await Firebase.initializeApp();
   await AppPrefs.initListener();
   await notificationInitialed();
-  runApp(RestartWidget(child: App()));
+  runApp(OverlaySupport(child: RestartWidget(child: App())));
 }
 
 class App extends StatelessWidget {

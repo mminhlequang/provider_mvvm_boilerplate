@@ -1,8 +1,36 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_app/src/configs/configs.dart';
 import 'package:flutter_app/src/utils/utils.dart';
 import 'package:intl/intl.dart';
+import 'package:overlay_support/overlay_support.dart';
 
 class AppUtils {
   AppUtils._();
+
+  static void toast(String? message, {Duration? duration}) {
+    if (message == null) return;
+    showOverlayNotification((context) {
+      return SafeArea(
+        child: Material(
+          color: Colors.transparent,
+          child: Container(
+            margin: const EdgeInsets.all(16),
+            width: MediaQuery.of(context).size.width,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: AppColors.primary,
+            ),
+            child: Text(
+              message,
+              textAlign: TextAlign.center,
+              style: AppTextStyles.normalBold.copyWith(color: Colors.white, fontSize: 18),
+            ),
+          ),
+        ),
+      );
+    }, duration: duration ?? Duration(milliseconds: 2000));
+  }
 
   static const List<String> _themes = ['dark', 'light'];
 
