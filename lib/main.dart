@@ -39,13 +39,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     AppDeviceInfo.init();
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
@@ -61,7 +61,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       title: APP_NAME,
       theme: ThemeSwitcher.of(context).themeData,
       navigatorObservers: <NavigatorObserver>[MyApp.observer],
-      locale: Locale('vi', 'VN'),
+      locale: const Locale('vi', 'VN'),
       translationsKeys: AppTranslation.translations,
       home: SplashScreen(),
       onGenerateRoute: Routers.generateRoute,
